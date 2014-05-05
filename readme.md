@@ -75,4 +75,4 @@ From the call of `$container->createArticle()` is evident, that a new object is 
 
 -----
 
-[![Build Status](https://secure.travis-ci.org/nette/di.png?branch=master)](http://travis-ci.org/nette/di)
+[![Build Status](https://secure.travis-ci.org/nette/di.png?branch=v2.2)](http://travis-ci.org/nette/di)
