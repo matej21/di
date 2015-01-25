@@ -254,7 +254,18 @@ class ContainerBuilder extends Nette\Object
 		$this->classes = array();
 		foreach ($this->definitions as $name => $def) {
 			if ($class = $def->implement ?: $def->class) {
-				foreach (class_parents($class) + class_implements($class) + array($class) as $parent) {
+				$types = array_map(function ($type) {
+					return strtolower($type);
+				}, class_parents($class) + class_implements($class) + array($class));
+
+				$manualTypes = $def->getAutowiredTypes();
+				if (is_array($manualTypes)) {
+					$manualTypes = array_map(function ($type) {
+						return ltrim(strtolower($type), '\\');
+					}, $manualTypes);
+					$types = array_intersect($types, $manualTypes);
+				}
+				foreach ($types as $parent) {
 					$parent = strtolower($parent);
 					$this->classes[$parent][$def->autowired && empty($excludedClasses[$parent])][] = (string) $name;
 				}

@@ -25,6 +25,8 @@ use Nette;
  * @method array getTags()
  * @method ServiceDefinition setAutowired(bool)
  * @method bool isAutowired()
+ * @method ServiceDefinition setAutowiredTypes(array)
+ * @method array|null getAutowiredTypes()
  * @method ServiceDefinition setDynamic(bool)
  * @method bool isDynamic()
  * @method ServiceDefinition setImplement(string)
@@ -51,6 +53,9 @@ class ServiceDefinition extends Nette\Object
 
 	/** @var bool */
 	private $autowired = TRUE;
+
+	/** @var null|array */
+	private $autowiredTypes;
 
 	/** @var bool */
 	private $dynamic = FALSE;
